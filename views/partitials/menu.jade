@@ -1,0 +1,13 @@
+nav.navbar.navbar-default.navbar-inverse
+    .container
+        .navbar-collapse.collapse
+            ul.nav.navbar-nav
+                li(class=(title === 'grabber' ? 'active' : '')): a(href="/")
+                    span.glyphicon.glyphicon-duplicate
+                    |&nbsp;Grabber
+                li(class=(title === 'news' ? 'active' : '')): a(href="/news")
+                    span.glyphicon.glyphicon-briefcase
+                    |&nbsp;My news
+            ul.nav.navbar-nav.navbar-right
+                li: a(href="/logout") #{user.username} logout&nbsp;
+                    span.glyphicon.glyphicon-log-out

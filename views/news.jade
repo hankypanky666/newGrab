@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    #result
+        if (data.length > 0)
+                 each val in data
+                    li: a(data-href=val.link) #{val.nameArticle}
+        else
+            p Config not exists!
+
+
+    .modal.fade#articleModal
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", aria-hidden="true")
+                        span.glyphicon.glyphicon-remove-circle(aria-hidden="true")
+                    h4.modal-title Modal title
+                .modal-body
+
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Close

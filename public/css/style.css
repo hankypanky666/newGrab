@@ -1,0 +1,8 @@
+.form-signin{
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+#save,#delete {
+    margin-left: 10px;
+}

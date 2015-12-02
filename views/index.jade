@@ -1,0 +1,54 @@
+extends layout
+
+block content
+
+    .container
+        .col-md-9
+            form#main(method="post")
+                .form-group
+                    label(for="siteUrl") site url
+                    input.form-control#siteUrl(type="url", name="siteUrl", placeholder="www.example.com")
+                .form-group
+                    label(for="article") article
+                    input.form-control#article(type="text", name="article", placeholder="class for main element(.article)")
+                .form-group
+                    label(for="articleHeader") article header
+                    input.form-control#articleHeader(type="text", name="articleHeader", placeholder="class for article heafer(h3)")
+                    input#saved(type="hidden", name="save", value="false")
+
+                button.btn.btn-default#grab(type="submit") Grab It!
+                button.btn.btn-primary#save(type="submit") Save Config!
+        .col-md-3
+            if (data.length > 0)
+                form(method="post")
+                    .form-group
+                        label(for="siteUrl") Choose config:
+                        select.form-control#conf(name="configurate")
+                            each val in data
+                                option(value=val.configId, data-config=val.config)= val.configName
+                    button.btn.btn-default#load(type="submit") Load!
+                    button.btn.btn-primary#delete(type="submit") Delete!
+            else
+                p Config not exists!
+        .clearfix
+        #result
+
+
+    .modal.fade#articleModal
+     .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button", data-dismiss="modal", aria-hidden="true")
+                    span.glyphicon.glyphicon-remove-circle(aria-hidden="true")
+                h4.modal-title Modal title
+            .modal-body
+
+            .modal-footer
+                button.btn.btn-default(type="button", data-dismiss="modal") Close
+                button.btn.btn-primary.saveArticle(type="button", data-href="") Save article
+
+
+
+
+
+
