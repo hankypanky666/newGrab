@@ -44,21 +44,23 @@ $("#save").on('click', function(e){
 $("#load").on('click', function (e) {
     e.preventDefault();
     var config = $("#conf").find(':selected').data('config');
-    console.log($("#conf").find(':selected').data('config'));
+    //console.log($("#conf").find(':selected').data('config'));
     $("#siteUrl").val(config.siteUrl);
     $("#article").val(config.article);
     $("#articleHeader").val(config.articleHeader);
+    $("#articleBody").val(config.articleBody);
 });
 
 $("#result").on('click', 'a', function(e){
     e.preventDefault();
+    var mainLink = $('#siteUrl').val();
     var link = $(this).data('href');
     var name = $(this).text();
-    //alert($(this).data('href'));
+    var articleBody = $('#articleBody').val();
     $.ajax({
         method: "GET",
         url: "/",
-        data: {url : link, name: name},
+        data: {url : link, name: name, mainlink: mainLink, articleBody: articleBody},
         success: function(res){
             console.log(link);
             $('#articleModal').modal();

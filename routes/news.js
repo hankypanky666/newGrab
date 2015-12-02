@@ -8,13 +8,13 @@ router.get('/', function (req, res, next) {
     if (req.isAuthenticated()) {
         Model.Article.forge()
             .fetchAll()
-            .then(function(configs) {
+            .then(function(article) {
                 res.render('news', {
                     title: 'news',
                     user: req.user,          //sending user data from passport session
-                    data: configs.toJSON()
+                    data: article.toJSON()
                 });
-                console.log(configs.toJSON());
+                console.log(article.toJSON());
             });
 
     } else {

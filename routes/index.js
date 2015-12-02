@@ -14,9 +14,12 @@ router.get('/', function (req, res, next) {
     if (req.query.url) {
         //console.log(urlutils.parse(req.query.url, true));
         var params = urlutils.parse(req.query.url, true);
-        params['article'] = '.b-posts-1-item__text';
+        params['article'] = req.query.articleBody;
         params['nameArticle'] = req.query.name;
-        //console.log(params);
+        if(params.host === null){
+            params.href = req.query.mainlink.slice(0, -1) + params.href;
+        }
+        console.log(params);
 
         returnArticle(params, function (err, Data) {
             //console.log(Data);
@@ -60,6 +63,7 @@ router.post('/', function(req, res, next){
         siteUrl: req.body.siteUrl,
         article: deleteDot(req.body.article),
         articleHeader: req.body.articleHeader,
+        articleBody: deleteDot(req.body.articleBody),
         save: req.body.save
     };
     //console.log(param);
